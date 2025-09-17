@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nour Mohammed Abdessamed Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body { margin:0; background:#131827; color:#eef4fa; font-family:'Inter',sans-serif; display:flex; }
+    .sidebar { width:270px; background:rgba(20,24,40,.97); box-shadow:2px 0 10px #01181c55; display:flex;flex-direction:column;align-items:center;padding:2rem 1rem 1.5rem;position:relative; }
+    .profile-image { width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:1rem;box-shadow:0 2px 24px #00f5ff55; }
+    .profile-name{color:#fff;font-weight:700;font-size:1.1rem;letter-spacing:.5px;}
+    .profile-title{color:#00fff5;font-size:.98rem;opacity:.92;}
+    .nav-menu{margin:2rem 0 0;width:100%;}
+    .nav-item{display:block;padding:.6rem 1rem;color:#eef4fa;text-decoration:none;border-radius:6px;margin-bottom:.4rem;font-weight:600;transition:all .18s;font-size:1rem;}
+    .nav-item:hover,.nav-item.active{background:linear-gradient(90deg,#00f5ff,#00ff41);color:#121212;}
+    .main-content{flex:1;padding:2.5rem 4vw;overflow-x:hidden;}
+    .content-section{display:none;max-width:900px;margin:auto;}
+    .content-section.active{display:block;animation:fadein .8s;}
+    @keyframes fadein{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
+    .main-image-container{text-align:center;margin-bottom:1.7rem;position:relative;}
+    .main-image{width:330px;height:430px;object-fit:cover;border-radius:15px;box-shadow:0 12px 36px #00f5ff1a;}
+    .floating-text{
+      font-family:'Orbitron',sans-serif;font-weight:700;font-size:1.09rem;text-transform:uppercase;letter-spacing:2px;position:absolute;bottom:24px;left:60%;transform:translateX(-50%);padding:10px 30px;background:linear-gradient(90deg,#00fff0 30%,#00ff80 70%,#ff00ff 100%);box-shadow:0 0 28px #00f5ff99,inset 0 0 32px #ff00ff66;border-radius:30px;color:#fff;text-shadow:0 0 9px #00f8ff88;animation:glow 3s infinite alternate,colorShift 7s infinite linear;pointer-events:none;
+    }
+    @keyframes glow{0%{filter:brightness(1);}50%{filter:brightness(1.13);}100%{filter:brightness(1);}}
+    @keyframes colorShift{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
+    .intro-text{text-align:center;font-size:1.4rem;font-weight:600;margin-bottom:.9rem;}
+    .description{text-align:center;font-size:1.08rem;color:#b6e4fa;margin-bottom:2rem;}
+    .subsection-title{color:#f59e0b;font-weight:800;font-size:1.3rem;margin:2rem 0 .9rem 0;border-bottom:2px solid #f59e0b;display:inline-block;}
+    .resume-section .experience-item{background:rgba(245,158,11,0.08);padding:1rem 1.2rem;border-radius:10px;margin-bottom:1rem;border-left:4px solid #00f5ff;}
+    .experience-title{font-weight:700;}
+    .experience-company{color:#f59e0b;font-weight:600;}
+    .experience-date{color:#7de3eb;font-size:.95rem;margin-bottom:.5rem;}
+    .experience-desc{line-height:1.6;}
+    .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1.2rem;margin-bottom:2rem;}
+    .contact-item{background:rgba(0,245,255,0.09);padding:1.1rem .7rem;border-radius:8px;text-align:center;border:1px solid #00f5ff;transition:.3s;box-shadow:0 2px 10px #2739a044;}
+    .contact-item:hover{transform:translateY(-2px) scale(1.03);box-shadow:0 0 16px #00f8ff73;}
+    .contact-icon{font-size:1.73rem;color:#00f5ff;margin-bottom:.28rem;}
+    .contact-title{font-weight:700;margin-bottom:.22rem;}
+    .contact-info a{color:#00f5ff;text-decoration:none;}
+    /* SEE section */
+    #upcoming-projects .content-section{background:rgba(34,25,88,0.87);border:2px solid #00f5ff;color:#f8fafc;border-radius:12px;padding:2rem;}
+    .see-banner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:2.3rem;padding:1rem;background:rgba(30,41,59,0.63);border-radius:13px;}
+    .see-banner img{width:205px;height:160px;object-fit:cover;border-radius:12px;box-shadow:0 8px 18px #00f2ff6a;}
+    .see-info{flex:1;min-width:200px;padding-right:1.2rem;}
+    .see-header{font-size:1.6rem;font-family:'Orbitron',sans-serif;background:linear-gradient(45deg,#00f5ff,#ff00f5);-webkit-background-clip:text;color:transparent;margin-bottom:.23rem;}
+    .see-mission{font-size:1.08rem;line-height:1.5;color:#bbfcff;}
+    .see-features{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.2rem;}
+    .see-feature{background:rgba(0,245,255,0.12);border:1px solid #00f5ff;padding:.5rem 1rem;border-radius:17px;font-size:.95rem;display:flex;align-items:center;gap:.5rem;font-weight:600;}
+    .see-feature .ficon{font-size:1.1rem;}
+    .see-cta{margin-top:1.8rem;border-top:1px dashed #00ffcc;padding-top:1.2rem;text-align:center;}
+    .see-cta a{padding:.6rem 1.4rem;border-radius:22px;background:linear-gradient(90deg,#00f5ff,#ff00f5);color:#111;font-weight:800;text-decoration:none;margin:0 .7rem;transition:.2s;box-shadow:0 0 12px #00ffbd61;}
+    .see-cta a:hover{filter:brightness(1.1);}
+    @media(max-width:900px){.main-image{width:220px;height:270px;}.see-banner{flex-direction:column;gap:1.5rem;}.see-info{padding-right:0;margin-bottom:.7rem;}}
+    @media(max-width:600px){.sidebar{width:100% !important;padding:1.2rem .2rem;flex-direction:row;justify-content:space-between;}.profile-image{width:70px;height:70px;}}
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <img src="377153143_1158205225149855_3821251105405554356_n-3000x3000.jpg" class="profile-image" alt="Nour profile">
+    <div class="profile-name">Nour Mohammed Abdessamed</div>
+    <div class="profile-title">PhD in Social Science, AI/ML, Tech-for-Good</div>
+    <nav class="nav-menu">
+      <a href="#home" class="nav-item active" onclick="show('home',this)">Home</a>
+      <a href="#resume" class="nav-item" onclick="show('resume',this)">Resume</a>
+      <a href="#contact" class="nav-item" onclick="show('contact',this)">Contact</a>
+      <a href="#vision" class="nav-item" onclick="show('vision',this)">Vision</a>
+      <a href="#upcoming-projects" class="nav-item" onclick="show('upcoming-projects',this)">Projects</a>
+    </nav>
+  </aside>
+  <main class="main-content">
+    <!-- HOME -->
+    <section id="home" class="content-section active">
+      <div class="content-card">
+        <div class="main-image-container">
+          <img src="Seedream-4-2025-09-16.jpg" class="main-image" alt="Nour home main">
+          <div class="floating-text">Revolutionizing Education with Adaptive AI/VR for Every Mind</div>
+        </div>
+        <div class="intro-text">Personalized, Psychology-Based Learning • Community Upliftment • Global Tech-for-Good Impact</div>
+        <div class="description">Empowering learners and practitioners to thrive using AI/VR and tailored pathways—education for all, starting with the underserved.</div>
+      </div>
+    </section>
+    <!-- RESUME -->
+    <section id="resume" class="content-section">
+      <div class="content-card resume-section">
+        <h2 class="subsection-title">Key Internships & Experience</h2>
+        <div class="experience-item"><div class="experience-title">Virtual Quantum Computing Intern</div><div class="experience-company">Forage</div><div class="experience-date">2024</div><div class="experience-desc">Quantum NLP, simulated circuits, ML workflow prototyping (remote).</div></div>
+        <div class="experience-item"><div class="experience-title">Digital Democracy Intern</div><div class="experience-company">Alliance4Europe (Nonprofit)</div><div class="experience-date">2024</div><div class="experience-desc">Worked on AI-driven civic engagement tools, digital campaigns, and community tech (Europe-wide, virtual).</div></div>
+        <div class="experience-item"><div class="experience-title">Mediterranean Sea Research Intern</div><div class="experience-company">MedEd Hub</div><div class="experience-date">2023</div><div class="experience-desc">Cross-cultural, multilingual education pilot for underserved youth (Algeria, Med. region).</div></div>
+        <div class="experience-item"><div class="experience-title">ESL Research Practitioner</div><div class="experience-company">State House High School, Elbayadh, Algeria</div><div class="experience-date">2024 - Present</div><div class="experience-desc">Leading research data collection from 200+ EFL students for dissertation analysis. Implementing emotion-aware teaching methods resulting in 99.9% positive examination outcomes.</div></div>
+      </div>
+    </section>
+    <!-- CONTACT -->
+    <section id="contact" class="content-section">
+      <div class="content-card contact-grid">
+        <div class="contact-item"><div class="contact-icon">📧</div><div class="contact-title">Email</div><div class="contact-info"><a href="mailto:roykaabdou@yahoo.com">roykaabdou@yahoo.com</a></div></div>
+        <div class="contact-item"><div class="contact-icon">📱</div><div class="contact-title">Phone</div><div class="contact-info"><a href="tel:+213776588342">+213 776 588 342</a></div></div>
+        <div class="contact-item"><div class="contact-icon">💻</div><div class="contact-title">GitHub</div><div class="contact-info"><a href="https://github.com/nourabdessamed">nourabdessamed</a></div></div>
+        <div class="contact-item"><div class="contact-icon">🔗</div><div class="contact-title">LinkedIn</div><div class="contact-info"><a href="https://www.linkedin.com/in/abdessamed-nour-2698b4103/">LinkedIn Profile</a></div></div>
+        <div class="contact-item"><div class="contact-icon">📍</div><div class="contact-title">Location</div><div class="contact-info">El Bayadh, Algeria</div></div>
+        <div class="contact-item"><div class="contact-icon">📝</div><div class="contact-title">Download CV</div><div class="contact-info"><a href="#">PDF Resume</a></div></div>
+      </div>
+    </section>
+    <!-- VISION -->
+    <section id="vision" class="content-section">
+      <div class="content-card vision-content">
+        <h2 class="subsection-title">My Vision</h2>
+        <div class="vision-quote" style="font-style:italic;font-size:1.2rem;margin:1.5rem 0;padding:1rem;background:rgba(0,245,255,0.05);border-left:4px solid #00f5ff;border-radius:8px;">"No learner left behind: I strive to fuse tech, psychology, and inclusive innovation to empower every human intellect—regardless of environment, access, or ability."
+        </div>
+        <div style="margin-top:2rem;">
+          <strong>Beliefs:</strong> <em>AI belongs to all. Learning adapts to the whole person. Collaboration multiplies impact. Technology bridges opportunity.</em>
+        </div>
+      </div>
+    </section>
+    <!-- UPCOMING PROJECTS: SEE MVP -->
+    <section id="upcoming-projects" class="content-section">
+      <div style="background:rgba(34,25,88,0.87);border:2px solid #00f5ff;color:#f8fafc;border-radius:12px;padding:2rem;">
+        <h2 class="subsection-title">Upcoming Project - SEE MVP</h2>
+        <div class="see-banner">
+          <div class="see-info">
+            <div class="see-header">SEE: Sustainable Educational Ecosystem</div>
+            <div class="see-mission">MVP platform combining AI, VR, and psychology for personalized learning journeys—empowering practitioners & enabling real community change.</div>
+            <div class="see-features">
+              <span class="see-feature"><span class="ficon">🧠</span>Personality-based AI coaching</span>
+              <span class="see-feature"><span class="ficon">🥽</span>Immersive VR adaptive classrooms</span>
+              <span class="see-feature"><span class="ficon">🌍</span>Community/NGO collaborations</span>
+              <span class="see-feature"><span class="ficon">👩‍🏫</span>Practitioner/educator upskilling</span>
+              <span class="see-feature"><span class="ficon">❤️</span>Underserved youth focus</span>
+            </div>
+          </div>
+          <div style="width:205px;height:160px;background:linear-gradient(45deg,#00f5ff,#ff00f5);border-radius:12px;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1.2rem;text-align:center;font-family:Orbitron;">SEE<br>CONCEPT</div>
+        </div>
+        <div class="see-cta">
+          <div style="font-size:1.12rem;margin-bottom:.4rem;font-weight:600;">Trailer:</div>
+          <div style="font-size:1.03rem;color:#bbfcff;margin:.5rem auto 1.1rem;max-width:540px;">
+            Imagine a platform where each learner's unique strengths, emotions, and culture guide their own VR-powered journey. Together with practitioners, NGOs and communities, SEE turns classrooms into vibrant hubs of adaptation, support, and innovation—equipping the next generation regardless of borders or backgrounds.
+          </div>
+          <a href="#contact">Contact to collaborate</a>
+          <a href="mailto:roykaabdou@yahoo.com?subject=SEE%20Partnership">Invest in SEE</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    function show(id,el){
+      document.querySelectorAll('.content-section').forEach(s=>s.classList.remove('active'));
+      document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+      document.getElementById(id).classList.add('active'); el.classList.add('active');
+    }
+  </script>
+</body>
+</html>
